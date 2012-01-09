@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="Deployer" default="all">
+	
+	<property name="src" value="${basedir}/src"/>
+	<property name="build" value="${basedir}/build"/>
+	<property name="product" value="${basedir}/product"/>
+
+	<property name="pyschoLib" value="${basedir}/../PsychoLib"/>
+	<property name="pyschoLib.src" value="${pyschoLib}/src"/>
+	<property name="pyschoLib.build" value="${pyschoLib}/build"/>
+
+
+	<target name="all" depends="clean, product" />
+	
+	<target name="init" description="Create directories to generate files" unless="eclipse">
+		<mkdir dir="${build}"/> 
+	</target>
+
+	<target name="javac" description="Build classes and resources" depends="init" unless="eclipse">
+		<javac destdir="${pyschoLib.build}" >
+		    <src path="${pyschoLib.src}"/>
+		</javac>
+		<copy todir="${pyschoLib.build}">
+			<fileset dir="${pyschoLib.src}" exclude="**/*.java" />
+		</copy>
+
+		<javac destdir="${build}" >
+		    <src path="${src}"/>
+		</javac>
+		<copy todir="${build}">
+			<fileset dir="${src}" exclude="**/*.java" />
+		</copy>
+	</target>
+
+	<target name="rmic" >
+		<rmic base="${build}" classpath="${build}" classname="com.psycho.deploy.Processor" />
+		<rmic base="${build}" classpath="${build}" classname="com.psycho.deploy.ProcessWrapper" />
+	</target>
+
+	<target name="product" description="Build final application" depends="javac, rmic">
+
+		<mkdir dir="${product}"/> 
+		<jar destfile="${product}/DController.jar" >
+			<fileset dir="${pyschoLib.build}" />
+			<fileset dir="${build}" />
+
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Main-Class" value="com.psycho.deploy.Controller"/>
+				<attribute name="Class-Path" value="lang/"/>
+			</manifest>
+		</jar>
+		<jar destfile="${product}/DProcessor.jar" >
+			<fileset dir="${pyschoLib.build}" />
+			<fileset dir="${build}" />
+
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Main-Class" value="com.psycho.deploy.Processor"/>
+				<attribute name="Class-Path" value="lang/"/>
+			</manifest>
+		</jar>
+		
+		<copy file="${pyschoLib.src}/com/psycho/studio/text/Language.properties" 
+			tofile="${product}/lang/com/psycho/studio/text/Language_Template.properties" />
+		<copy file="${src}/com/psycho/deploy/text/Language.properties" 
+			tofile="${product}/lang/com/psycho/deploy/text/Language_Template.properties" />
+
+	</target>
+	
+	
+	<target name="clean" depends="clean-classes, clean-product" />
+	
+	<target name="clean-classes" unless="eclipse">
+		<delete dir="${build}"/>
+	</target>
+
+	<target name="clean-product" > <!-- For eclipse clean -->
+		<delete dir="${product}"/>
+	</target>
+
+
+</project>

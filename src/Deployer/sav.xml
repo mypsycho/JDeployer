@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE deployer SYSTEM "Deployer.dtd">
+<deployer>
+  <processor ip="127.0.0.1" name="h" port="2099">
+    <command delay="0.0" line="notepad.exe" name="edit" order="1" path=""/></processor>
+</deployer>

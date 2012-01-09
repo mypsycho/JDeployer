@@ -1,0 +1,43 @@
+Politique de validation
+=======================
+
+1- Cas nominal
+* Démarrer le processor en local (port 2099)
+* Démarrer le processor en local avec le port 6001
+
+
+
+5- Test des traductions
+a) Comparer à une capture d'écran
+
+
+
+3- Test des interactions
+* Créer un processor
+* Créer un processor avec le même nom
+* Créer un processor avec nom différent
+* Créer un processor avec le même nom qu précédemment
+* Supprimer le 2eme processro crée
+* Recréer le processor supprimé
+
+
+* Entrer un port 0 ou négatif
+* Entrer un chiffre à la place du port
+* Ne rien renter à la place du port
+
+
+4- Tester les entrées|sorties
+a) Jouer les fichiers de test
+  . Chargement normal
+  . Chargement complementaire
+  . Chargement redefinissant => Comportement différent
+
+b) Tester la lecture erronée d'un fichier
+c) Tester l'écriture protégée
+
+
+
+
+2- Test des paramètres des lancements
+a) Démarrer le processor avec un port occupé
+b) Tester l'arrêt du controleur et son redémarrage

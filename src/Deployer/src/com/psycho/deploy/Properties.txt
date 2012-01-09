@@ -1,0 +1,6 @@
+- A command is identified by its name => its name is unique for a processor
+
+- A processor may have several commands with same name if and only if:
+  one of these commands is runnning at a given time.
+
+- A process is identified by its name => its name is unique
