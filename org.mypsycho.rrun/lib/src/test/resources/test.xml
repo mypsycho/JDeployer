@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE deployer SYSTEM "Deployer.dtd">
+<deployer>
+  <processor name="there" ip="nperansin" port="6001">
+    <command name="calc" line="calc" path="" order="1" delay="0.0"/></processor>
+  <processor name="here" ip="nperansin" port="2099">
+    <command name="bloc" line="notepad" path="" order="2" delay="10.0"/>
+    <command name="cmd" line="calc" path="" order="3" delay="0.0"/></processor>
+  <processor name="other" ip="edumas" port="2099"/>
+</deployer>

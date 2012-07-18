@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>org.mypsycho.rrun</groupId>
+  <artifactId>mypsycho-rrun</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+  <name>Assembly of product</name>
+
+  <parent>
+    <groupId>org.mypsycho.maven.poms</groupId>
+    <artifactId>java-assembly</artifactId>
+    <version>0.1.0</version>
+  </parent>
+  
+  <properties>
+    <project.scriptName>RRUN</project.scriptName>
+    <project.build.mainClass>com.psycho.deploy.ControlApplication</project.build.mainClass>
+    <project.build.finalName.proc>rrun-proc-${project.version}</project.build.finalName.proc>
+	<project.build.finalName.control>rrun-control-${project.version}</project.build.finalName.control>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>rrun-lib</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+  </dependencies>
+
+  <distributionManagement>
+    <repository>
+      <id>releases</id>
+      <url>http://myhome:8080/nexus/content/repositories/releases</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshots</id>
+      <url>http://myhome:8080/nexus/content/repositories/snapshots</url>
+    </snapshotRepository>
+  </distributionManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>client-compile</id>
+            <phase>compile</phase>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+			<configuration> <!-- cet endroit est surchargeable -->
+              <finalName>${project.build.finalName.proc}</finalName>
+              <archive>
+                <manifest>
+                  <mainClass>com.psycho.deploy.ProcessorApplication</mainClass>
+                </manifest>
+              </archive>
+            </configuration>
+          </execution>
+        </executions>
+        <configuration> <!-- cet endroit est surchargeable -->
+          <finalName>${project.build.finalName.control}</finalName>
+
+          <archive>
+            <manifestEntries>
+              <Class-Path>../../conf/</Class-Path>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+</project>

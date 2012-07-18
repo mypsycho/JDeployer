@@ -1,0 +1,21 @@
+<!--
+    XML Reminder :
+        &lt;   -> <
+        &gt;   -> >
+        &amp;  -> &
+        &quot; -> "
+        &qpos; -> '
+-->
+
+<!ELEMENT deployer (processor*)>
+	<!ELEMENT processor (command)*>
+	 <!ATTLIST processor name CDATA #REQUIRED>
+	 <!ATTLIST processor ip CDATA #REQUIRED>
+	 <!ATTLIST processor port CDATA "2099"> <!-- Positive integer -->
+
+		<!ELEMENT command EMPTY>
+		 <!ATTLIST command name CDATA #REQUIRED>
+		 <!ATTLIST command line CDATA #REQUIRED>
+		 <!ATTLIST command path CDATA "">
+		 <!ATTLIST command order CDATA "0"> <!-- Positive float, 0 == last -->
+		 <!ATTLIST command delay CDATA "0"> <!-- Positive integer -->

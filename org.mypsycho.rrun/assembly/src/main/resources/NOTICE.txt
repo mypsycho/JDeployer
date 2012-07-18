@@ -1,0 +1,2 @@
+Copyright (c) 2011 Peransin Nicolas,  Use is subject
+to license terms under the GNU LGPL v2.1.

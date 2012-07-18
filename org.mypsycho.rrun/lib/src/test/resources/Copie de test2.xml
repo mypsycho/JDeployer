@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE deployer SYSTEM "Deployer.dtd">
+<deployer>
+
+  <processor name="here" ip="localhost" port="2099">
+    <command name="bloc-note" line="notepad" path="" order="1" delay="0.0"/>
+    <command name="bloc-note2" line="notepad" path="" order="0" delay="0.0"/>
+    <command name="bloc-note3" line="notepad" path="" order="0" delay="0.0"/>
+    <command name="bloc-note4" line="notepad" path="" order="0" delay="0.0"/>
+    <command name="bloc-note5" line="notepad" path="" order="0" delay="0.0"/>
+    <command name="bloc-note6" line="notepad" path="" order="0" delay="0.0"/>
+    <command name="command" line="cmd /C test.bat this that etc" path="D:\nperansin\Workspace\Deployer\test" order="3" delay="0.0"/>
+  </processor>
+
+  <processor name="there" ip="localhost" port="6001">
+    <command name="calcatrix" line="calc" path="" order="2" delay="5.5"/>
+  </processor>
+</deployer>
