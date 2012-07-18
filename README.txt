@@ -10,4 +10,4 @@ Main functions are:
 - Order commands to perform sequential start
 - Add pause in sequential start.
 
-Have fun ...
+The product can be found in the "download" section fo github repository.
